@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css"  href="../content/style/sass/site.css">
+    <script type="text/javascript" src="../content/script/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../content/script/view/site.js"></script>
+    <script type="text/javascript" src="../content/script/coffeeKup/coffeekup.js"></script>
+    <script type="text/javascript" src="../content/script/view/control/foundContainer.js"></script>
+    <script type="text/javascript" src="../content/script/view/control/tableDescriptionContainer.js"></script>
+    <script type="text/javascript" src="../content/script/view/control/columnDescriptionContainer.js"></script>
+    <script type="text/javascript">
+
+
+        function createTableButton(id){
+            return  {
+                DatabaseName: "DatabaseName" + id,
+                Id: id,
+                SchemaName: "SchemaName" + id,
+                TableName: "TableName" + id
+            };
+        }
+
+        function createColumnButton(id){
+            return {
+                Id: id,
+                ColumnName: "column" + id
+            };
+        }
+
+        function setColumnDescription(id){
+            var columnDescription ={
+                Id: id,
+                ColumnName: "name" + id,
+                Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lobortis justo nec enim elementum ut consectetur enim pretium. Sed sed libero nec elit tincidunt sodales."
+            };
+
+            jQuery('#divColumnDescription')[0].updateDescription(columnDescription);
+        }
+
+        function setTableDescription(id){
+            jQuery('#divColumnDescription')[0].hideFieldset();
+            var tableDescription ={
+                DatabaseName: "APH_Profile",
+                Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lobortis justo nec enim elementum ut consectetur enim pretium. Sed sed libero nec elit tincidunt sodales. Integer elementum, sapien vel feugiat congue, velit lacus cursus est, id commodo ante tellus at turpis. Nullam egestas diam sed nibh convallis iaculis. Quisque ornare est eu ligula tempor eu commodo eros tincidunt. Nunc sem erat, feugiat quis tempor quis, interdum eget orci. Suspendisse feugiat tempus ipsum commodo molestie. Sed mollis libero consectetur lorem pellentesque et tincidunt justo viverra. Aenean lorem turpis, blandit tristique fringilla a, pellentesque ut lectus. In sed diam leo. Donec interdum, velit at pharetra pellentesque, erat lectus sodales purus, a commodo velit lorem sit amet erat. Donec enim nisi, condimentum sit amet adipiscing quis, posuere sit amet ante.",
+                SchemaName: "dbo",
+                TableName: "Chapters" + id,
+                ColumnList: [createColumnButton(1), createColumnButton(2), createColumnButton(3)]
+            };
+
+            jQuery('#divTableDescription')[0].updateDescription(tableDescription);
+
+        }
+
+        jQuery(document).ready(function() {
+
+            var list =  [createTableButton(1), createTableButton(2), createTableButton(3), createTableButton(4), createTableButton(5)];
+
+            foundContainer(jQuery('#divFoundContainer'), list, setTableDescription);
+            tableDescriptionContainer(jQuery('#divTableDescription'), setColumnDescription);
+            columnDescriptionContainer(jQuery('#divColumnDescription'));
+        });
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="headerSearchArea floatLeft">
+        <input type="text" id="textboxSearch">
+        <button type="button" id="buttonSearch">search</button>
+    </div>
+    <div class="clearBoth"></div>
+</div>
+
+<div class="mainContainer">
+    <div id="divFoundContainer" class="foundContainer floatLeft">
+
+    </div>
+
+    <div id="divTableDescription" class="divTableDescription floatLeft">
+
+    </div>
+    <div id="divColumnDescription" class="divColumnDescription floatLeft">
+
+    </div>
+    <div class="clearBoth"></div>
+</div>
+</body>
+</html>

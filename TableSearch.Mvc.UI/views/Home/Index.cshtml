@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css"  href="../../content/style/sass/site.css" />
+    <script type="text/javascript" src="../../content/script/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../../content/script/validation/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../../content/script/coffeeKup/coffeekup.js"></script>
+
+    <script type="text/javascript" src="../../content/script/view/site.js"></script>
+    <script type="text/javascript" src="../../content/script/view/jquery.validate.addon.js"></script>
+
+    <script type="text/javascript" src="../../content/script/view/control/controlDescriptionBase.js"></script>
+
+    <script type="text/javascript" src="../../content/script/view/control/foundContainer.js"></script>
+    <script type="text/javascript" src="../../content/script/view/control/tableDescriptionContainer.js"></script>
+    <script type="text/javascript" src="../../content/script/view/control/columnDescriptionContainer.js"></script>
+    <script type="text/javascript" src="../../content/script/view/index.js"></script>
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+            setupPage();
+        });
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="floatLeft marginRight5">
+        <div>
+            <form id="formSearchText" name="formSearchText" action="/Search/SearchForTables" method="post">
+                <input type="text" id="textboxSearch" name="textboxSearch" />
+                <button type="submit" id="buttonSearch" name="buttonSearch">search</button>
+            </form>
+        </div>
+    </div>
+    <div class="floatLeft">
+        <div id="divError" name="divError" style="display:none;"></div>
+    </div>
+    <div class="clearBoth"></div>
+</div>
+<div class="mainContainer">
+    <div id="divFoundContainer" class="foundContainer floatLeft">
+
+    </div>
+
+    <div id="divTableDescription" class="divTableDescription floatLeft">
+
+    </div>
+    <div id="divColumnDescription" class="divColumnDescription floatLeft">
+
+    </div>
+    <div class="clearBoth"></div>
+</div>
+</body>
+</html>

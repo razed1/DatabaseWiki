@@ -1,0 +1,102 @@
+@import "base"
+
+$darkGrey: #666666
+$lightGrey: #ababab
+$white: #ffffff
+
+@mixin darkGreyBorder
+  border-color: $darkGrey
+  border-style: solid
+
+@mixin fullScreen
+  width: 1400px
+
+@mixin genericFieldset
+  font-weight: bold
+  font-size: 20px
+
+@mixin samePadding($padding)
+  padding: $padding $padding $padding $padding
+
+@mixin searchItemPart
+  @include samePadding(7px)
+  font-weight: bold
+  text-align: center
+  width: 115px
+
+@mixin fieldset($width)
+  @include darkGreyBorder
+  @include samePadding(10px)
+  width: $width
+
+button
+  @include darkGreyBorder
+  background-color: $white
+  margin: 0 0 0 0
+
+/* Main page containers */
+
+.header
+  @include fullScreen
+
+.mainContainer
+  @include fullScreen
+
+.mainContainerSectionHeader
+  height: 50px
+
+
+/* Search Results */
+
+.foundContainer
+  width: 300px
+
+/* Search Item */
+
+.searchItem
+  @include darkGreyBorder
+  @include samePadding(0)
+  border-width: thin
+  margin: 0 5px 5px 0
+
+
+.searchItemDatabase
+  @include searchItemPart
+  background-color: $darkGrey
+  color: $white
+
+.searchItemLabel
+  @include searchItemPart
+
+.searchItemSchema
+  @include searchItemPart
+  background-color: $lightGrey
+
+/* End Search Results */
+
+
+/* Table Description */
+
+.columnNameButton
+  margin: 0 5px 5px 0
+
+.divTableDescription
+
+.divColumnDescription
+
+.divDescriptionText
+  margin: 0 0 15px 0
+
+.fieldsetTableDescriptionText
+  @include fieldset(400px)
+
+.fieldsetTableDescriptionText legend
+  @include genericFieldset
+
+.fieldsetColumnDescriptionText
+  @include fieldset(200px)
+
+.fieldsetColumnDescriptionText legend
+  @include genericFieldset
+
+/* End Table Description */

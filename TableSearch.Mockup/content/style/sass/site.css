@@ -1,0 +1,100 @@
+.clearBoth {
+  clear: both; }
+
+.floatLeft {
+  float: left; }
+
+.floatRight {
+  float: right; }
+
+.marginBottom10 {
+  margin-bottom: 10px; }
+
+.padding5 {
+  padding: 5px 5px 5px 5px; }
+
+.roundedCorners {
+  border-radius: 15px; }
+
+.zeroBuffer {
+  margin: 0 0 0 0 !important;
+  padding: 0 0 0 0 !important; }
+
+button {
+  border-color: #666666;
+  border-style: solid;
+  background-color: white;
+  margin: 0 0 0 0; }
+
+/* Main page containers */
+.header {
+  width: 1400px; }
+
+.mainContainer {
+  width: 1400px; }
+
+.mainContainerSectionHeader {
+  height: 50px; }
+
+/* Search Results */
+.foundContainer {
+  width: 300px; }
+
+/* Search Item */
+.searchItem {
+  border-color: #666666;
+  border-style: solid;
+  padding: 0 0 0 0;
+  border-width: thin;
+  margin: 0 5px 5px 0; }
+
+.searchItemDatabase {
+  padding: 7px 7px 7px 7px;
+  font-weight: bold;
+  text-align: center;
+  width: 115px;
+  background-color: #666666;
+  color: white; }
+
+.searchItemLabel {
+  padding: 7px 7px 7px 7px;
+  font-weight: bold;
+  text-align: center;
+  width: 115px; }
+
+.searchItemSchema {
+  padding: 7px 7px 7px 7px;
+  font-weight: bold;
+  text-align: center;
+  width: 115px;
+  background-color: #ababab; }
+
+/* End Search Results */
+/* Table Description */
+.columnNameButton {
+  margin: 0 5px 5px 0; }
+
+.divDescriptionText {
+  margin: 0 0 15px 0; }
+
+.fieldsetTableDescriptionText {
+  border-color: #666666;
+  border-style: solid;
+  padding: 10px 10px 10px 10px;
+  width: 400px; }
+
+.fieldsetTableDescriptionText legend {
+  font-weight: bold;
+  font-size: 20px; }
+
+.fieldsetColumnDescriptionText {
+  border-color: #666666;
+  border-style: solid;
+  padding: 10px 10px 10px 10px;
+  width: 200px; }
+
+.fieldsetColumnDescriptionText legend {
+  font-weight: bold;
+  font-size: 20px; }
+
+/* End Table Description */
