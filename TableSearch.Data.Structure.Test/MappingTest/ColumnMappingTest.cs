@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate.Linq;
 using TableSearch.Data.Structure.Entity;
 using TableSearch.Data.Structure.Test.Creator;
-using TableSearch.Data.Structure.Test.Utility;
 using TableSearch.Data.Structure.Utlitiy;
 
 

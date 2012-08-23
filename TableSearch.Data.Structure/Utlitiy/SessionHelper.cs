@@ -45,7 +45,6 @@ namespace TableSearch.Data.Structure.Utlitiy
         }
 
         #endregion
-        
 
         #region Properties
 

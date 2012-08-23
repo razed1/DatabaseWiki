@@ -16,7 +16,9 @@ namespace TableSearch.Data.Structure.Test.Utility
     [TestClass]
     public class GetDatabaseInfomation
     {
-        public static IEnumerable<string> RetrieveAllDatabaseNames()
+        #region Support Methods
+
+        private static IEnumerable<string> RetrieveAllDatabaseNames()
         {
             const string databaseQuery = "SELECT Name FROM sys.databases";
 
@@ -44,7 +46,11 @@ namespace TableSearch.Data.Structure.Test.Utility
             selectCommand.Parameters.Clear();
 
             return dataSetToReturn;
-        }
+        } 
+        
+        #endregion
+
+        #region Quasi Workflow Methods
 
         [TestMethod]
         public void DatabaseNameQueryWorks()
@@ -60,7 +66,7 @@ namespace TableSearch.Data.Structure.Test.Utility
                 "FROM Sys.Tables AS [Table]  " +
                 "INNER JOIN Sys.Schemas AS [Schema] ON [Schema].schema_id = [Table].schema_id ";
 
-            return 
+            return
                 databaseNames
                     .Select(databaseName =>
                         RunQuery(string.Format(query, databaseName))
@@ -104,12 +110,12 @@ namespace TableSearch.Data.Structure.Test.Utility
                                  "INNER JOIN sys.types [types] ON [types].system_type_id = [columns].system_type_id " +
                                  "WHERE[tables].name = '{1}' ";
 
-            return 
+            return
                 tableList
                     .Select(tableName =>
                         RunQuery(string.Format(query, tableName.DatabaseName, tableName.Name))
                             .Tables[0].Rows.Cast<DataRow>()
-                                .Select(x => new ColumnEntity() { DataType = x["DataTypeName"].ToString(), Name = x["Name"].ToString(), ParentTable = tableName})
+                                .Select(x => new ColumnEntity { DataType = x["DataTypeName"].ToString(), Name = x["Name"].ToString(), ParentTable = tableName })
                                 .ToList()
                         )
                             .Aggregate(new List<ColumnEntity>(), (inner, outer) =>
@@ -118,7 +124,6 @@ namespace TableSearch.Data.Structure.Test.Utility
                                 return outer;
                             });
         }
-
 
         [TestMethod]
         public void ColumnsAreFound()
@@ -138,8 +143,8 @@ namespace TableSearch.Data.Structure.Test.Utility
                     transaction.Commit();
                 }
             }
-        }
+        } 
 
-
+        #endregion
     }
 }

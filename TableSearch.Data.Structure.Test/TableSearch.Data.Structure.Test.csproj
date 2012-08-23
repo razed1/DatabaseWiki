@@ -67,7 +67,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\CleanUp.cs" />
     <Compile Include="MappingTest\MappingTestBase.cs" />
-    <Compile Include="Utility\DataStartUp.cs" />
     <Compile Include="Utility\GetDatabaseInfomation.cs" />
   </ItemGroup>
   <ItemGroup>
