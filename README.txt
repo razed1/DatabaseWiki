@@ -1,8 +1,24 @@
-Really fast and poor explanation until I get a better readme up.
+**Really fast and poor explanation until I get a better readme up.**
 
-This is a web based site used to help with searching for tables in a database.  
 
 What it does is grabs every table from every database on a server, populates two tables (One for all table information, and the other with all the column information.  From there, a web page allows a user to search for table (by name), and add notes to a selected table.  Also, when a user selects a table, all columns are shown for said table.  If a column is selected, notes can be added to it.
+
+Stuff used:
+	Database:
+		NHibernate
+		Fluent.NHibernate
+		NHibernate.Linq
+	
+	Web Framework:
+		ASP MVC 3
+	
+	UI:
+		JQuery/CoffeeScript
+		SASS
+
+	Testing:
+		NSubstitute
+		NUnit
 
 
 Enable Package Restore on the solution
