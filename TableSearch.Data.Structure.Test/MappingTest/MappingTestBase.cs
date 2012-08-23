@@ -5,6 +5,7 @@ using TableSearch.Data.Structure.Utlitiy;
 
 namespace TableSearch.Data.Structure.Test.MappingTest
 {
+    [TestClass]
     public class MappingTestBase
     {
         #region Fields

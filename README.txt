@@ -18,7 +18,7 @@ Stuff used:
 
 	Testing:
 		NSubstitute
-		NUnit
+		MSTest
 
 
 Enable Package Restore on the solution
@@ -50,3 +50,11 @@ Create and populate the Wiki tables (tables to hold the table and column informa
 	Run test "ColumnsAreFound"
 
 Should be good to go
+
+** Issues **
+
+Using the built in Test runner for Visual Studio
+
+	"Error loading ~\TableSearch\TableSearch.Mvc.Engine.vsmdi: Input file not found: C:\Delete\TableSearch\Ta
+bleSearch.Mvc.Engine.vsmdi."
+  Remove read only from the pareant folder.  You will still get this in the output, but you can run tests.
