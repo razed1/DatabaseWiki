@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NHibernate.Linq;
 using TableSearch.Data.Structure.Entity;
 using TableSearch.Data.Structure.Test.Creator;
@@ -11,7 +11,7 @@ using TableSearch.Shared.Test;
 
 namespace TableSearch.Data.Persist.Test.ColumnPersistTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenUpdatingAColumnDescription : MappingTestBase
     {
         #region Fields
@@ -20,7 +20,7 @@ namespace TableSearch.Data.Persist.Test.ColumnPersistTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
 
@@ -30,7 +30,7 @@ namespace TableSearch.Data.Persist.Test.ColumnPersistTest
 
         #region Test Methods
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheDescriptionIsUpdated()
         {
             var oldDescription = RandomTool.RandomString(30);
