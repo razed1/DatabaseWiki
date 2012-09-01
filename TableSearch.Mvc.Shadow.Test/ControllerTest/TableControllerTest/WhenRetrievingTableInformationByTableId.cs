@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NHibernate;
 using NSubstitute;
 using TableSearch.Mvc.Shadow.ControllerShadow;
@@ -11,7 +11,7 @@ using TableSearch.Shared.WorkflowEntities.Result;
 
 namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenRetrievingTableInformationByTableId
     {
         #region Fields
@@ -30,7 +30,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _tableControllerShadow = new TableControllerShadow();
@@ -49,14 +49,14 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
 
         #region Test Methods
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndANewSessionIsCreated()
         {
             _methodGroup = new RetrieveTableInformationMethodGroup(_searchForTable, _queryForColumns, () => { throw new MethodAccessException(); });
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _tableControllerShadow.RetrieveTableInformationByTableId(TableId, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheTableQueryMethodIsCalledCorrectly()
         {
             _searchForTable = (x, session) => { if (session == _session) throw new MethodAccessException(); return null; };
@@ -64,14 +64,14 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _tableControllerShadow.RetrieveTableInformationByTableId(TableId, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheTableDoesNotExistSoAnExceptionIsThrown()
         {
             _methodGroup = new RetrieveTableInformationMethodGroup((tableId, session) => null, _queryForColumns, _sessionMethod);
             AssertionExtensions.ShouldThrow<ArgumentException>(() => _tableControllerShadow.RetrieveTableInformationByTableId(TableId, _methodGroup));
         }
       
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheTableExistsSoTheResultIsReturned()
         {
             _tableControllerShadow
@@ -81,7 +81,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
                 .Be(_tableInformationResult);
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheColumnQueryIsCalledCorrectly()
         {
             _queryForColumns = (text, session) => { if (session == _session) throw new MethodAccessException(); return null; };
@@ -90,7 +90,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _tableControllerShadow.RetrieveTableInformationByTableId(TableId, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheColumnsForTheTableAreQueriedAndSetOnTheResult()
         {
             var columnList = new List<ColumnItemResult> {new ColumnItemResult(), new ColumnItemResult()};

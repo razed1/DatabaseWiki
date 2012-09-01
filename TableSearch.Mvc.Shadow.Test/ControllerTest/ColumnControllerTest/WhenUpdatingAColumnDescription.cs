@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using FluentAssertions;
 using NHibernate;
 using NSubstitute;
@@ -8,7 +8,7 @@ using TableSearch.Mvc.Shadow.MethodGroup.ColumnMethodGroup;
 
 namespace TableSearch.Mvc.Shadow.Test.ControllerTest.ColumnControllerTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenUpdatingAColumnDescription
     {
         private const int ColumnId = -123;
@@ -27,7 +27,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.ColumnControllerTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _columnExists = (x, session) => true;
@@ -43,21 +43,21 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.ColumnControllerTest
         #region Test Methods
 
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndANewSessionIsCreated()
         {
             _methodGroup = new UpdateColumnDescriptionMethodGroup(_columnExists, _updateMethod, () => { throw new MethodAccessException(); });
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _columnControllerShadow.UpdateColumnDescription(ColumnId, Description, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheColumnQueryIsCalledCorrectly()
         {
             _columnExists = (id, session) => { if (id == ColumnId && session == _session) throw new MethodAccessException(); return false; };
             _methodGroup = new UpdateColumnDescriptionMethodGroup(_columnExists, _updateMethod, _sessionMethod);
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheColumnDoesNotExistSoAnExceptionIsThrown()
         {
             _columnExists = (x, session) => false;
@@ -66,7 +66,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.ColumnControllerTest
             AssertionExtensions.ShouldThrow<ArgumentException>(() => _columnControllerShadow.UpdateColumnDescription(ColumnId, Description, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheUpdateMethodIsCalledCorrectly()
         {
             _updateMethod = (columnId, y, session) => { if (columnId == ColumnId && session == _session) throw new MethodAccessException(); };
@@ -75,7 +75,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.ColumnControllerTest
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _columnControllerShadow.UpdateColumnDescription(ColumnId, Description, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheUpdatedIsMadeAndTheTextIsReturned()
         {
             _methodGroup = new UpdateColumnDescriptionMethodGroup(_columnExists, _updateMethod, _sessionMethod);

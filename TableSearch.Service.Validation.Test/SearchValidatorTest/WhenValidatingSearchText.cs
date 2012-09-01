@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TableSearch.Service.Validation.Error;
 using TableSearch.Service.Validation.Restriction;
 using TableSearch.Shared.Test;
 
 namespace TableSearch.Service.Validation.Test.SearchValidatorTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenValidatingSearchText
     {
         #region Fields
@@ -16,7 +16,7 @@ namespace TableSearch.Service.Validation.Test.SearchValidatorTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
 
@@ -26,7 +26,7 @@ namespace TableSearch.Service.Validation.Test.SearchValidatorTest
 
         #region Test Methods
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheSearchTextIsNotLongEnoughAUnsuccessfulResultIsReturned()
         {
             SearchValidator.SearchValidator
@@ -36,7 +36,7 @@ namespace TableSearch.Service.Validation.Test.SearchValidatorTest
                 .BeFalse();
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheSearchTextIsNotLongEnoughAUnsuccessfulMessageIsReturned()
         {
             SearchValidator.SearchValidator

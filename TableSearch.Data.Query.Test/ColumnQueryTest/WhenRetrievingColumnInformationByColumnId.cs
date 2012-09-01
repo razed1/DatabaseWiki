@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using FluentAssertions;
 using TableSearch.Data.Structure.Entity;
 using TableSearch.Data.Structure.Test.Creator;
@@ -8,7 +8,7 @@ using TableSearch.Data.Structure.Utlitiy;
 
 namespace TableSearch.Data.Query.Test.ColumnQueryTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenRetrievingColumnInformationByColumnId : MappingTestBase
     {
         #region Fields
@@ -19,7 +19,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             using (var session = SessionHelper.CreateASession())
@@ -32,7 +32,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
 
         #region Test Methods
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void AndTheColumnNameIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())
@@ -41,7 +41,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
             }
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void AndTheDataTypeIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())
@@ -50,7 +50,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
             }
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void AndTheDescriptionIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())

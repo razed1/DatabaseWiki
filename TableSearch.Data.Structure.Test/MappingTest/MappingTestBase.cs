@@ -1,11 +1,11 @@
 ﻿using TableSearch.Data.Structure.Entity;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TableSearch.Data.Structure.Test.Utility;
 using TableSearch.Data.Structure.Utlitiy;
 
 namespace TableSearch.Data.Structure.Test.MappingTest
 {
-    [TestClass]
+    [TestFixture]
     public class MappingTestBase
     {
         #region Fields
@@ -25,7 +25,7 @@ namespace TableSearch.Data.Structure.Test.MappingTest
 
         #region Test Hooks
 
-        [TestCleanup]
+        [TearDown]
         public void TearDown()
         {
             using (var session = SessionHelper.CreateASession())

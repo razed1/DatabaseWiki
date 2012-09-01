@@ -1,6 +1,6 @@
 ﻿using System;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NHibernate;
 using NSubstitute;
 using TableSearch.Mvc.Shadow.ControllerShadow;
@@ -8,7 +8,7 @@ using TableSearch.Mvc.Shadow.MethodGroup.TableMethodGroup;
 
 namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenUpdatingATableDescription
     {
         #region Fields
@@ -27,7 +27,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _tableControllerShadow = new TableControllerShadow();
@@ -45,21 +45,21 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
         #region Test Methods
 
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndANewSessionIsCreated()
         {
             _methodGroup = new UpdateTableDescriptionMethodGroup(_tableExists, _updateMethod, () => { throw new MethodAccessException(); });
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _tableControllerShadow.UpdateTableDescription(TableId, Description, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheTableQueryIsCalledCorrectly()
         {
             _methodGroup = new UpdateTableDescriptionMethodGroup((x, session) => { if (session == _session) throw new MethodAccessException(); return false; }, _updateMethod, _sessionMethod);
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _tableControllerShadow.UpdateTableDescription(TableId, Description, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheTableDoesNotExistSoAnExceptionIsThrown()
         {
             _tableExists = (x, session) => false;
@@ -67,14 +67,14 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.TableControllerTest
             AssertionExtensions.ShouldThrow<ArgumentException>(() => _tableControllerShadow.UpdateTableDescription(TableId, Description, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheUpdateMethodIsCalledCorrectly()
         {
             _methodGroup = new UpdateTableDescriptionMethodGroup(_tableExists, (x, y, session) => { if (x == TableId && session == _session) throw new MethodAccessException(); }, _sessionMethod);
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _tableControllerShadow.UpdateTableDescription(TableId, Description, _methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheUpdatedIsMadeAndTheTextIsReturned()
         {
             _tableControllerShadow.UpdateTableDescription(TableId, Description, _methodGroup).Data.Should().Be(Description);

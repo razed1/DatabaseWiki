@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NHibernate.Linq;
 using TableSearch.Data.Structure.Entity;
 using TableSearch.Data.Structure.Test.Creator;
@@ -10,12 +10,12 @@ using TableSearch.Data.Structure.Utlitiy;
 
 namespace TableSearch.Data.Structure.Test.MappingTest
 {
-    [TestClass]
+    [TestFixture]
     public class ColumnMappingTest : MappingTestBase
     {
         #region Test Methods
 
-        [TestMethod]
+        [Test]
         public void ItemCreated()
         {
             using (var session = SessionHelper.CreateASession())

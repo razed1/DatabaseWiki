@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NHibernate;
 using NSubstitute;
 using TableSearch.Mvc.Shadow.ControllerShadow;
@@ -14,7 +14,7 @@ using TableSearch.Shared.WorkflowEntities.Result;
 
 namespace TableSearch.Mvc.Shadow.Test.ControllerTest.SearchControllerTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenSearchingForTables
     {
         #region Fields
@@ -34,7 +34,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.SearchControllerTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _searchString = RandomTool.RandomString();
@@ -56,7 +56,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.SearchControllerTest
 
         #region Test Methods
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheSearchTextIsTooShortAnUnsuccessfulRestultIsReturned()
         {
             _searchTextValidation = (text) => new MethodResult<bool>().AddErrorMessage("error");
@@ -71,14 +71,14 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.SearchControllerTest
                     .BeFalse();
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndANewSessionIsCreated()
         {
             _searchForItemsMethodGroup = new SearchForItemsMethodGroup(_searchTextValidation, _searchQueryMethod, () => { throw new MethodAccessException(); });
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _searchController.SearchForItems(_searchString, _searchForItemsMethodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheSearchMethodIsCalledCorrectly()
         {
             _searchQueryMethod = (text, session) => { if (session == _session) throw new MethodAccessException(); return null; };
@@ -87,7 +87,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.SearchControllerTest
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _searchController.SearchForItems(_searchString, _searchForItemsMethodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndTheSearchResultReturnsAnEmptyListSoTheEmptyListIsReturned()
         {
             _searchQueryMethod = (text, session) => new List<SearchForItemsResult>();
@@ -103,7 +103,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.SearchControllerTest
                     .BeFalse();
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndThereAreResultsThatAreAttachedToTheResult()
         {
             ((SimpleResult<IList<SearchForItemsResult>>)

@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using FluentAssertions;
 using NHibernate.Linq;
 using TableSearch.Data.Structure.Entity;
@@ -9,7 +9,7 @@ using TableSearch.Data.Structure.Utlitiy;
 
 namespace TableSearch.Data.Query.Test.TableQueryTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenRetrievingATableByTableId : MappingTestBase
     {
         private int _createdId;
@@ -25,7 +25,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             using (var session = SessionHelper.CreateASession())
@@ -39,7 +39,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
 
         #region Test Methods
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheReturnedResultDatabaseNameIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())
@@ -53,7 +53,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
            
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheReturnedResultDescriptionIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())
@@ -66,7 +66,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
             }
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheReturnedResultSchemaNameIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())
@@ -79,7 +79,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
             }
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheReturnedResultTableNameIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())

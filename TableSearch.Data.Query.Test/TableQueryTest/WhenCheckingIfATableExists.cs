@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NHibernate.Linq;
 using TableSearch.Data.Structure.Entity;
 using TableSearch.Data.Structure.Test.Creator;
@@ -10,7 +10,7 @@ using TableSearch.Data.Structure.Utlitiy;
 
 namespace TableSearch.Data.Query.Test.TableQueryTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenCheckingIfATableExists : MappingTestBase
     {
         #region Fields
@@ -19,7 +19,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
 
@@ -29,7 +29,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
 
         #region Test Methods
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheTableExistsSoTrueIsReturned()
         {
             using (var session = SessionHelper.CreateASession())
@@ -43,7 +43,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
             }
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheTableDoesNotExistSoFalseIsReturned()
         {
             using (var session = SessionHelper.CreateASession())

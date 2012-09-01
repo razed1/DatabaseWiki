@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NHibernate;
 using NSubstitute;
 using TableSearch.Mvc.Shadow.ControllerShadow;
@@ -9,7 +9,7 @@ using TableSearch.Shared.WorkflowEntities.Result;
 
 namespace TableSearch.Mvc.Shadow.Test.ControllerTest.ColumnControllerTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenRetrievingColumnInformationByColumnId
     {
         private const int ColumnId = -2113;
@@ -26,7 +26,7 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.ColumnControllerTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _columnControllerShadow = new ColumnControllerShadow();
@@ -41,28 +41,28 @@ namespace TableSearch.Mvc.Shadow.Test.ControllerTest.ColumnControllerTest
         #endregion
 
         #region Test Methods
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void AndANewSessionIsCreated()
         {
             var methodGroup = new RetrieveColumnInformationByColumnIdMethodGroup(_queryMethod, () => { throw new MethodAccessException(); });
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _columnControllerShadow.RetrieveColumnInformationByColumnId(ColumnId, methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheColumnQueryIsCalledCorrectly()
         {
             var methodGroup = new RetrieveColumnInformationByColumnIdMethodGroup((columnId, session) => { if (columnId == ColumnId && session == _session) throw new MethodAccessException(); return null; }, _sessionMethod);
             AssertionExtensions.ShouldThrow<MethodAccessException>(() => _columnControllerShadow.RetrieveColumnInformationByColumnId(ColumnId, methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheColumnDoesNotExistSoAnExceptionIsThrown()
         {
             var methodGroup = new RetrieveColumnInformationByColumnIdMethodGroup((x, session) => null, _sessionMethod);
             AssertionExtensions.ShouldThrow<ArgumentException>(() => _columnControllerShadow.RetrieveColumnInformationByColumnId(ColumnId, methodGroup));
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheColumnIsFoundAndItIsReturned()
         {
             var methodGroup = new RetrieveColumnInformationByColumnIdMethodGroup(_queryMethod, _sessionMethod);

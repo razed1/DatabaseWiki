@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TableSearch.Data.Structure.Entity;
 using TableSearch.Data.Structure.Test.Creator;
 using TableSearch.Data.Structure.Test.MappingTest;
@@ -8,7 +8,7 @@ using TableSearch.Data.Structure.Utlitiy;
 
 namespace TableSearch.Data.Query.Test.ColumnQueryTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenRetrievingColumnsByTableId : MappingTestBase
     {
         private const int ColumnCount = 3;
@@ -21,7 +21,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             using (var session = SessionHelper.CreateASession())
@@ -36,7 +36,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
 
         #endregion
         #region Test Methods
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheQueryFindsNoValuesSoAnEmptyListIsReturned()
         {
             using (var session = SessionHelper.CreateASession())
@@ -49,7 +49,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
             }
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheQueryFindsItemsSoAListIsReturned()
         {
             using (var session = SessionHelper.CreateASession())

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NHibernate.Linq;
 using TableSearch.Data.Structure.Entity;
 using TableSearch.Data.Structure.Utlitiy;
@@ -13,7 +13,7 @@ using TableSearch.Data.Structure.Utlitiy;
 
 namespace TableSearch.Data.Structure.Test.Utility
 {
-    [TestClass]
+    [TestFixture]
     public class GetDatabaseInfomation
     {
         #region Support Methods
@@ -52,7 +52,7 @@ namespace TableSearch.Data.Structure.Test.Utility
 
         #region Quasi Workflow Methods
 
-        [TestMethod]
+        [Test]
         public void DatabaseNameQueryWorks()
         {
             RetrieveAllDatabaseNames().Any().Should().BeTrue();
@@ -81,7 +81,7 @@ namespace TableSearch.Data.Structure.Test.Utility
                         });
         }
 
-        [TestMethod]
+        [Test]
         public void TablesAreFound()
         {
             var databaseNames = RetrieveAllDatabaseNames();
@@ -125,7 +125,7 @@ namespace TableSearch.Data.Structure.Test.Utility
                             });
         }
 
-        [TestMethod]
+        [Test]
         public void ColumnsAreFound()
         {
             using (var session = SessionHelper.CreateASession())

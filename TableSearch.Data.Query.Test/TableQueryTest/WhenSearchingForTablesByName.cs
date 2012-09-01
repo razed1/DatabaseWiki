@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TableSearch.Data.Structure.Test.Creator;
 using TableSearch.Data.Structure.Test.MappingTest;
 using TableSearch.Data.Structure.Utlitiy;
@@ -9,7 +9,7 @@ using TableSearch.Shared.Test;
 
 namespace TableSearch.Data.Query.Test.TableQueryTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenSearchingForTablesByName : MappingTestBase
     {
         private string _tableName;
@@ -20,7 +20,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _tableName = RandomTool.RandomString(10);
@@ -30,7 +30,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
 
         #region Test Methods
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheQueryFindsNoValuesSoAnEmptyListIsReturned()
         {
             using (var session = SessionHelper.CreateASession())
@@ -45,7 +45,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
 
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheQueryFindsValuesSoAListIsReturned()
         {
             using (var session = SessionHelper.CreateASession())
@@ -59,7 +59,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
             }
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheReturnedResultDatabaseNameIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())
@@ -77,7 +77,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
             }
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheReturnedResultSchemaNameIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())
@@ -94,7 +94,7 @@ namespace TableSearch.Data.Query.Test.TableQueryTest
             }
         }
 
-        [TestCategory("Integration"), TestMethod]
+        [Test]
         public void TheReturnedResultTableNameIsCorrect()
         {
             using (var session = SessionHelper.CreateASession())

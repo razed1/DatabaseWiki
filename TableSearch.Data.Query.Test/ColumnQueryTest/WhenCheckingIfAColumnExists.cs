@@ -1,6 +1,6 @@
 ﻿using System;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TableSearch.Data.Structure.Entity;
 using TableSearch.Data.Structure.Test.Creator;
 using TableSearch.Data.Structure.Test.MappingTest;
@@ -8,7 +8,7 @@ using TableSearch.Data.Structure.Utlitiy;
 
 namespace TableSearch.Data.Query.Test.ColumnQueryTest
 {
-    [TestClass]
+    [TestFixture]
     public class WhenCheckingIfAColumnExists : MappingTestBase
     {
 
@@ -20,7 +20,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
 
         #region Test Hooks
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             using (var session = SessionHelper.CreateASession())
@@ -33,7 +33,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
 
         #region Test Methods
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheColumnExistsSoTrueIsReturned()
         {
             using (var session = SessionHelper.CreateASession())
@@ -42,7 +42,7 @@ namespace TableSearch.Data.Query.Test.ColumnQueryTest
             }
         }
 
-        [TestCategory("BVT"), TestMethod]
+        [Test]
         public void TheColumnDoesNotExistSoFalseIsReturned()
         {
             using (var session = SessionHelper.CreateASession())
