@@ -64,7 +64,6 @@ local.properties
 *.ncrunchsolution
 
 .builds
-.nuget
 _ReSharper
 NuGetPowerTools.0.29
 packages

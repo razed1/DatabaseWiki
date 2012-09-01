@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableSearch.Data.Structure"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableSearch.Data.Structure.Test", "TableSearch.Data.Structure.Test\TableSearch.Data.Structure.Test.csproj", "{D690E006-3A98-4C84-99FF-8C4906D44AAC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{60D9A9F4-6F69-431B-A5E7-13BE12991230}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TableSearch.Mvc.Engine.vsmdi
